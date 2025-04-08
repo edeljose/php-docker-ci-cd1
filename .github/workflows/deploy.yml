@@ -17,8 +17,7 @@ jobs:
       - name: 🧪 Construir contenedor y correr pruebas PHPUnit
         run: |
           docker build -t php-app-test .
-          docker run --rm php-app-test bash -c "composer install && ./vendor/bin/phpunit"
-
+          docker run --rm -w /var/www/php-app php-app ./vendor/bin/phpunit
       - name: 🔍 Verificar las variables de entorno
         run: |
           echo "IP del servidor: ${{ secrets.SERVER_IP }}"
