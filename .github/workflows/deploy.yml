@@ -15,8 +15,8 @@ jobs:
 
       - name: 🧪 Ejecutar pruebas PHPUnit
         run: |
-          docker build -t php-app .
-          docker run --rm -w /var/www/php-app php-app ./vendor/bin/phpunit
+          docker build --no-cache -t php-app .
+          docker run --rm -w /var/www/php-app php-app bash -c "composer install && ./vendor/bin/phpunit"
 
       - name: 📦 Copiar archivos al servidor
         uses: appleboy/scp-action@v0.1.4
